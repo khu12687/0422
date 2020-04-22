@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>제이쿼리를 이용한 겔러리</title>
+<style>
+#wrapper{
+    width: 650px;
+    height: 650px;
+    background-color: red;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+}
+#thumb{
+    width: 100px;
+    height: 650px;
+    background-color: mintcream;
+    float: left;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    overflow: scroll;
+}
+#detail{
+    width: 550px;
+    height: 650px;
+    background-color: whitesmoke;
+    float: left;
+    position: absolute;
+    left: 100px;
+    top: 0px;
+}
+#card{
+    width: 550px;
+    height: 650px;
+    background-color: blue;
+    float: left;
+    position: absolute;
+    left: 650px;
+    top: 0px;
+}
+</style>
+<script src="../js/data.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){  //문서가 로드되면.. addEventListenr와 같은의미
+    createThumb();
+});
+//썸네일 생성 함수!!
+function createThumb(){
+    //thumb 영역에 이미지 동적 추가하기!!
+    //movies.marvel 변수가 json 객체를 여러개 보유한 배열이다!!
+    for(var i=0; i<movies.marvel.length; i++){
+        var json = movies.marvel[i];
+        var img = document.createElement("img");
+        $(img).attr("src",json.url);  
+        $(img).css("width",80+"px");
+        $(img).css("height",80+"px");
+        $(img).css("margin-bottom",5+"px");
+        $("#thumb").append(img); // appendChild()메서드와 동일!!
+
+        $(img).click(function(){
+            //카드에 선택한 이미지 출력하기!!
+            $("#big").attr("src",$(this).attr("src"));
+
+            //카드를 먼저 원상복귀 시킨다!!
+            $("#card").css("left","650px");
+            //카드가 다가오게 처리.. 애니메이션!!
+            $("#card").animate({
+                left:"100px"
+            });
+        })
+    }
+}
+</script>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="thumb"></div>
+        <div id="detail"></div>
+        <div id="card"><img id="big" width="550px" height="650px"/></div>
+    </div>
+</body>
+</html>

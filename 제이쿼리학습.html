@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<style>
+.myCss{
+    font-size: 20px;
+    color: red;
+    font-weight: bold;
+}
+</style>
+<script src="../js/data.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+/*
+제이쿼리의 문법은 크게 2가지로 구성
+1.(A어떤요소를).(B.어떻게할지)
+2.제이쿼리는 다른 라이브러리와 구분되기 위해 구분자로 셀렉터앞에 $()를 붙인다!!
+A.selector : 누구를에 해당하는 구성요소를 셀렉터라하며, 이 셀렉터는
+                  CSS의 규칙을따른다!!
+                  ex) $("div") : 문서내의 div 테그를...
+                  ex) $("#container") : 문서내 id가 container인 요소
+                  ex) $(".text") : 문서내 test라는 이름을 갖는 css클래스
+*/
+addEventListener("load",function(){ //문서가로드되면...
+  var box =  document.getElementById("box");
+  box.innerText="자바스크립트를 이용";
+});
+
+//제이쿼리
+$(document).ready(function(){ //문서가 로드되면...
+    $("p").text("문서내 테그를 통한 접근");
+});
+$(document).ready(function(){ //문서가 로드되면...
+    $("#box").text("id를 통한 접근");
+});
+$(document).ready(function(){ //문서가 로드되면...
+    $(".myCss").text("css클래스를 통한 접근");
+});
+</script>
+</head>
+<body>
+    <p class="myCss" id="box"></p>
+</body>
+</html>
